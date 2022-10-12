@@ -1,0 +1,50 @@
+#Escribí una función llamada rot13 que encripte un string recibido como parámetro utilizando el algoritmo ROT13
+$alfabeto_mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+$alfabeto_minusculas = "abcdefghijklmnopqrstuvwxyz"
+$longitud_alfabeto = 26
+$limite_inferior_mayusculas = 65
+$limite_inferior_minusculas = 97
+
+=begin
+	"Cifrar" y "Descifrar" una cadena con ROT 13, una variante
+	del cifrado César. El método funciona tanto para codificar como
+	para decodificar.
+=end
+def rot_13(cadena)
+
+	cadena_con_rotaciones = ""
+	# Ir letra por letra...
+	for letra in cadena.chars
+		# Si no es una letra (es un espacio, punto, etcétera) entonces
+		# no la rotamos ni cambiamos, ponemos el carácter así como es
+		if !letra.match(/^[[:alpha:]]$/)
+			cadena_con_rotaciones += letra
+			next
+		end
+		# Suponemos que la letra es mayúscula
+		alfabeto = $alfabeto_mayusculas
+		limite = $limite_inferior_mayusculas
+		# Pero comprobamos y cambiamos si es necesario
+		if letra == letra.downcase # ¿Es minúscula?
+			alfabeto = $alfabeto_minusculas
+			limite = $limite_inferior_minusculas
+		end
+
+		valor_ascii = letra.ord
+		# Rotar
+		nueva_posicion = (valor_ascii - limite + 13) % $longitud_alfabeto
+		# Y ver cuál carácter está en esa posición
+		cadena_con_rotaciones += alfabeto[nueva_posicion]
+	end
+	# Regresar nueva cadena
+	cadena_con_rotaciones
+end
+
+mensaje = "¡Bienvenidos a la cursada 2019 de TTPS Opción Ruby!"
+puts "El mensaje original es '#{mensaje}'"
+
+mensaje_cifrado = rot_13 (mensaje) 
+puts "El mensaje cifrado es '#{mensaje_cifrado}'"
+
+mensaje_descifrado = rot_13 mensaje_cifrado
+puts "El mensaje descifrado es '#{mensaje_descifrado}'" 

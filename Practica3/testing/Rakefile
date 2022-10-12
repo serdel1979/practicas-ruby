@@ -1,0 +1,57 @@
+require 'rake/testtask'
+
+#Corre todos los test
+Rake::TestTask.new(:spec) do |t|
+  t.libs << "spec"
+  t.libs << "lib"
+  t.test_files = FileList["spec/*_spec.rb"]
+end
+
+#Corre test ejer2 practica 3
+Rake::TestTask.new(:methods) do |t|
+  t.libs << "spec"
+  t.libs << "lib"
+  t.test_files = FileList["spec/**/methods_spec.rb"]
+end
+
+#Test ejercicio4 practica1
+Rake::TestTask.new(:specejer4) do |t|
+  t.libs << "spec"
+  t.libs << "../../Practica1"
+  t.test_files = FileList["spec/ejer4p1_spec.rb"]
+end
+
+#Test ejer5 practica1
+Rake::TestTask.new(:specejer5) do |t|
+  t.libs << "spec"
+  t.libs << "../../Practica1"
+  t.test_files = FileList["spec/**/ejer5p1_spec.rb"]
+end
+
+#Test ejer6 practica1
+Rake::TestTask.new(:specejer6) do |t|
+  t.libs << "spec"
+  t.libs << "../../Practica1"
+  t.test_files = FileList["spec/**/ejer6p1_spec.rb"]
+end
+
+#Test ejer9 practica1
+Rake::TestTask.new(:specejer9) do |t|
+  t.libs << "spec"
+  t.libs << "../../Practica1"
+  t.test_files = FileList["spec/**/ejer9p1_spec.rb"]
+end
+
+#Test ejer1 practica2
+Rake::TestTask.new(:specejer1p2) do |t|
+  t.libs << "spec"
+  t.libs << "../../Practica2"
+  t.test_files = FileList["spec/**/ejer1p2_spec.rb"]
+end
+
+#Test ejer2 practica2
+Rake::TestTask.new(:specejer2p2) do |t|
+  t.libs << "spec"
+  t.libs << "../../Practica2"
+  t.test_files = FileList["spec/**/ejer2p2_spec.rb"]
+end
